@@ -36,12 +36,29 @@ namespace API.Controllers
 
             _context.Users.Add(user);
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();  
 
             return new UserDto {
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };
+        }
+
+        [HttpPost("/Api/AddTbl_Country")]
+        public  void AddTbl_Country()
+        {
+
+
+            var country = new Tbl_Country
+            {
+                Name = "KSA",
+                Address = "KSA"
+            };
+
+            _context.Tbl_Country.Add(country);
+
+             _context.SaveChanges();
+
         }
 
         [HttpPost("login")]
